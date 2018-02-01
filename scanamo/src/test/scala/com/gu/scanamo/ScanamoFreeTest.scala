@@ -55,7 +55,7 @@ class RequestCountingInterpreter extends (ScanamoOpsA ~> RequestCountingInterpre
       else
         counter -> new QueryResult().withItems(List.empty[java.util.Map[String, AttributeValue]].asJava)
     )
-    case RawQuery(req) => ???
+    case JavaQuery(req) => ???
     case BatchWrite(_) => ???
     case BatchGet(_) => ???
     case Update(_) => ???
