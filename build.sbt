@@ -180,8 +180,8 @@ val publishingSettings = Seq(
         Path.userHome / ".sbt" / ".credentials"
       )),
   scmInfo := Some(ScmInfo(
-    url("https://github.com/rstradling/scanamo"),
-    "scm:git:git@github.com:rstradling/scanamo.git"
+    url("https://github.com/boomtownroi/scanamo"),
+    "scm:git:git@github.com:boomtownroi/scanamo.git"
   )),
 
   pomExtra := {
