@@ -175,9 +175,13 @@ val publishingSettings = Seq(
   licenses := Seq("Apache V2" -> url("http://www.apache.org/licenses/LICENSE-2.0.html")),
   publishMavenStyle := true,
   publishArtifact in Test := false,
+  credentials :=
+      Seq(Credentials(
+        Path.userHome / ".sbt" / ".credentials"
+      )),
   scmInfo := Some(ScmInfo(
-    url("https://github.com/scanamo/scanamo"),
-    "scm:git:git@github.com:scanamo/scanamo.git"
+    url("https://github.com/rstradling/scanamo"),
+    "scm:git:git@github.com:rstradling/scanamo.git"
   )),
 
   pomExtra := {
@@ -192,9 +196,9 @@ val publishingSettings = Seq(
 
   publishTo := Some(
     if (isSnapshot.value)
-      Opts.resolver.sonatypeSnapshots
+      "Snapshot Artifactory" at "http://artifactory.ad.boomtownroi.com/artifactory/ext-snapshot-local"
     else
-      Opts.resolver.sonatypeStaging
+      "Artifactory" at "http://artifactory.ad.boomtownroi.com/artifactory/ext-release-local"
   ),
 
   releaseCrossBuild := true,
