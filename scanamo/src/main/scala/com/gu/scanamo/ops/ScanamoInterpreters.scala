@@ -47,6 +47,8 @@ object ScanamoInterpreters {
         client.scan(JavaRequests.scan(req))
       case Query(req) =>
         client.query(JavaRequests.query(req))
+      case JavaQuery(req) =>
+        client.query(req)
       case BatchWrite(req) =>
         client.batchWriteItem(req)
       case BatchGet(req) =>
@@ -96,6 +98,8 @@ object ScanamoInterpreters {
         futureOf(client.scanAsync, JavaRequests.scan(req))
       case Query(req) =>
         futureOf(client.queryAsync, JavaRequests.query(req))
+      case JavaQuery(req) =>
+        futureOf(client.queryAsync, req)
       // Overloading means we need explicit parameter types here
       case BatchWrite(req) =>
         futureOf(client.batchWriteItemAsync(_: BatchWriteItemRequest, _: AsyncHandler[BatchWriteItemRequest, BatchWriteItemResult]), req)

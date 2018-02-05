@@ -11,6 +11,7 @@ final case class Delete(req: ScanamoDeleteRequest) extends ScanamoOpsA[DeleteIte
 final case class ConditionalDelete(req: ScanamoDeleteRequest) extends ScanamoOpsA[Either[ConditionalCheckFailedException, DeleteItemResult]]
 final case class Scan(req: ScanamoScanRequest) extends ScanamoOpsA[ScanResult]
 final case class Query(req: ScanamoQueryRequest) extends ScanamoOpsA[QueryResult]
+final case class JavaQuery(req: QueryRequest) extends ScanamoOpsA[QueryResult]
 final case class BatchWrite(req: BatchWriteItemRequest) extends ScanamoOpsA[BatchWriteItemResult]
 final case class BatchGet(req: BatchGetItemRequest) extends ScanamoOpsA[BatchGetItemResult]
 final case class Update(req: ScanamoUpdateRequest) extends ScanamoOpsA[UpdateItemResult]
@@ -29,6 +30,7 @@ object ScanamoOps {
     liftF[ScanamoOpsA, Either[ConditionalCheckFailedException, DeleteItemResult]](ConditionalDelete(req))
   def scan(req: ScanamoScanRequest): ScanamoOps[ScanResult] = liftF[ScanamoOpsA, ScanResult](Scan(req))
   def query(req: ScanamoQueryRequest): ScanamoOps[QueryResult] = liftF[ScanamoOpsA, QueryResult](Query(req))
+  def javaQuery(req: QueryRequest): ScanamoOps[QueryResult] = liftF[ScanamoOpsA, QueryResult](JavaQuery(req))
   def batchWrite(req: BatchWriteItemRequest): ScanamoOps[BatchWriteItemResult] =
     liftF[ScanamoOpsA, BatchWriteItemResult](BatchWrite(req))
   def batchGet(req: BatchGetItemRequest): ScanamoOps[BatchGetItemResult] =
